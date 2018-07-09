@@ -1,0 +1,69 @@
+﻿@model IEnumerable<WebHotelli.Models.Reservacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_ent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_sal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_usuarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.costo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Habitacion.numeracion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_ent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha_sal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_usuarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.costo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Habitacion.numeracion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id_res }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id_res }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id_res })
+        </td>
+    </tr>
+}
+
+</table>

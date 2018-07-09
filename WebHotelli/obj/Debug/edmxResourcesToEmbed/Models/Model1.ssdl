@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id_cat" />
+    </Key>
+    <Property Name="id_cat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="precio_ini" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="precio_usu" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="max_usuarios" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Habitacion">
+    <Key>
+      <PropertyRef Name="id_hab" />
+    </Key>
+    <Property Name="id_hab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="planta" Type="int" Nullable="false" />
+    <Property Name="numeracion" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="id_cat" Type="int" Nullable="false" />
+    <Property Name="estado" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservacion">
+    <Key>
+      <PropertyRef Name="id_res" />
+    </Key>
+    <Property Name="id_res" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_usu" Type="int" Nullable="false" />
+    <Property Name="id_hab" Type="int" Nullable="false" />
+    <Property Name="fecha_ent" Type="datetime" Nullable="false" />
+    <Property Name="fecha_sal" Type="datetime" />
+    <Property Name="num_usuarios" Type="int" />
+    <Property Name="estado" Type="int" Nullable="false" />
+    <Property Name="costo" Type="numeric" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id_usu" />
+    </Key>
+    <Property Name="id_usu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" MaxLength="124" />
+    <Property Name="cedula" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="correo" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="constrasenia" Type="nvarchar" MaxLength="8" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="Habitacion">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitacion">
+    <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitacion">
+        <PropertyRef Name="id_hab" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="id_hab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id_usu" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="id_usu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" store:Type="Tables" />
+    <EntitySet Name="Habitacion" EntityType="Self.Habitacion" store:Type="Tables" />
+    <EntitySet Name="Reservacion" EntityType="Self.Reservacion" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" store:Type="Tables" />
+    <AssociationSet Name="FK_Categoria" Association="Self.FK_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Habitacion" EntitySet="Habitacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitacion" Association="Self.FK_Habitacion">
+      <End Role="Habitacion" EntitySet="Habitacion" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario" Association="Self.FK_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

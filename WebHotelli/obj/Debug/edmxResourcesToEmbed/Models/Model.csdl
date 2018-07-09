@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="id_cat" />
+    </Key>
+    <Property Name="id_cat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="precio_ini" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="precio_usu" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="max_usuarios" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Habitacion" Relationship="Self.FK_Categoria" FromRole="Categoria" ToRole="Habitacion" />
+  </EntityType>
+  <EntityType Name="Habitacion">
+    <Key>
+      <PropertyRef Name="id_hab" />
+    </Key>
+    <Property Name="id_hab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="planta" Type="Int32" Nullable="false" />
+    <Property Name="numeracion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_cat" Type="Int32" Nullable="false" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FK_Categoria" FromRole="Habitacion" ToRole="Categoria" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.FK_Habitacion" FromRole="Habitacion" ToRole="Reservacion" />
+  </EntityType>
+  <EntityType Name="Reservacion">
+    <Key>
+      <PropertyRef Name="id_res" />
+    </Key>
+    <Property Name="id_res" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usu" Type="Int32" Nullable="false" />
+    <Property Name="id_hab" Type="Int32" Nullable="false" />
+    <Property Name="fecha_ent" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_sal" Type="DateTime" Precision="3" />
+    <Property Name="num_usuarios" Type="Int32" />
+    <Property Name="estado" Type="Int32" Nullable="false" />
+    <Property Name="costo" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Habitacion" Relationship="Self.FK_Habitacion" FromRole="Reservacion" ToRole="Habitacion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.FK_Usuario" FromRole="Reservacion" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id_usu" />
+    </Key>
+    <Property Name="id_usu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
+    <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="constrasenia" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Reservacion" Relationship="Self.FK_Usuario" FromRole="Usuario" ToRole="Reservacion" />
+  </EntityType>
+  <Association Name="FK_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="id_cat" />
+      </Principal>
+      <Dependent Role="Habitacion">
+        <PropertyRef Name="id_cat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Habitacion">
+    <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Habitacion">
+        <PropertyRef Name="id_hab" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="id_hab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id_usu" />
+      </Principal>
+      <Dependent Role="Reservacion">
+        <PropertyRef Name="id_usu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Habitacion" EntityType="Self.Habitacion" />
+    <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Categoria" Association="Self.FK_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Habitacion" EntitySet="Habitacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Habitacion" Association="Self.FK_Habitacion">
+      <End Role="Habitacion" EntitySet="Habitacion" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario" Association="Self.FK_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Reservacion" EntitySet="Reservacion" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
