@@ -12,7 +12,7 @@ namespace WebHotelli.Controllers
 {
     public class ReservacionController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities db = new Entities();
 
         // GET: Reservacion
         public ActionResult Index()
@@ -39,8 +39,8 @@ namespace WebHotelli.Controllers
         // GET: Reservacion/Create
         public ActionResult Create()
         {
-            ViewBag.id_hab = new SelectList(db.Habitacion, "id_hab", "numeracion");
-            ViewBag.id_usu = new SelectList(db.Usuario, "id_usu", "nombre");
+            ViewBag.habitacion_id = new SelectList(db.Habitacion, "habitacion_id", "numeracion");
+            ViewBag.usuario_id = new SelectList(db.Usuario, "usuario_id", "nombre");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_res,id_usu,id_hab,fecha_ent,fecha_sal,num_usuarios,estado,costo")] Reservacion reservacion)
+        public ActionResult Create([Bind(Include = "reservacion_id,usuario_id,habitacion_id,fecha_entrada,fecha_salida,num_usuarios,estado,costo")] Reservacion reservacion)
         {
             if (ModelState.IsValid)
             {
@@ -58,8 +58,8 @@ namespace WebHotelli.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_hab = new SelectList(db.Habitacion, "id_hab", "numeracion", reservacion.id_hab);
-            ViewBag.id_usu = new SelectList(db.Usuario, "id_usu", "nombre", reservacion.id_usu);
+            ViewBag.habitacion_id = new SelectList(db.Habitacion, "habitacion_id", "numeracion", reservacion.habitacion_id);
+            ViewBag.usuario_id = new SelectList(db.Usuario, "usuario_id", "nombre", reservacion.usuario_id);
             return View(reservacion);
         }
 
@@ -75,8 +75,8 @@ namespace WebHotelli.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_hab = new SelectList(db.Habitacion, "id_hab", "numeracion", reservacion.id_hab);
-            ViewBag.id_usu = new SelectList(db.Usuario, "id_usu", "nombre", reservacion.id_usu);
+            ViewBag.habitacion_id = new SelectList(db.Habitacion, "habitacion_id", "numeracion", reservacion.habitacion_id);
+            ViewBag.usuario_id = new SelectList(db.Usuario, "usuario_id", "nombre", reservacion.usuario_id);
             return View(reservacion);
         }
 
@@ -85,7 +85,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_res,id_usu,id_hab,fecha_ent,fecha_sal,num_usuarios,estado,costo")] Reservacion reservacion)
+        public ActionResult Edit([Bind(Include = "reservacion_id,usuario_id,habitacion_id,fecha_entrada,fecha_salida,num_usuarios,estado,costo")] Reservacion reservacion)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +93,8 @@ namespace WebHotelli.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_hab = new SelectList(db.Habitacion, "id_hab", "numeracion", reservacion.id_hab);
-            ViewBag.id_usu = new SelectList(db.Usuario, "id_usu", "nombre", reservacion.id_usu);
+            ViewBag.habitacion_id = new SelectList(db.Habitacion, "habitacion_id", "numeracion", reservacion.habitacion_id);
+            ViewBag.usuario_id = new SelectList(db.Usuario, "usuario_id", "nombre", reservacion.usuario_id);
             return View(reservacion);
         }
 

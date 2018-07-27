@@ -7,57 +7,58 @@
       <Schema Namespace="Model.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
-            <PropertyRef Name="id_cat" />
+            <PropertyRef Name="categoria_id" />
           </Key>
-          <Property Name="id_cat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="32" Nullable="false" />
-          <Property Name="precio_ini" Type="numeric" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="precio_usu" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_inicial" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_usuario" Type="numeric" Precision="18" Scale="2" Nullable="false" />
           <Property Name="max_usuarios" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Habitacion">
           <Key>
-            <PropertyRef Name="id_hab" />
+            <PropertyRef Name="habitacion_id" />
           </Key>
-          <Property Name="id_hab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="habitacion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria_id" Type="int" Nullable="false" />
           <Property Name="planta" Type="int" Nullable="false" />
           <Property Name="numeracion" Type="nvarchar" MaxLength="4" Nullable="false" />
-          <Property Name="id_cat" Type="int" Nullable="false" />
           <Property Name="estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Reservacion">
           <Key>
-            <PropertyRef Name="id_res" />
+            <PropertyRef Name="reservacion_id" />
           </Key>
-          <Property Name="id_res" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="id_usu" Type="int" Nullable="false" />
-          <Property Name="id_hab" Type="int" Nullable="false" />
-          <Property Name="fecha_ent" Type="datetime" Nullable="false" />
-          <Property Name="fecha_sal" Type="datetime" />
+          <Property Name="reservacion_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" Nullable="false" />
+          <Property Name="habitacion_id" Type="int" Nullable="false" />
+          <Property Name="fecha_entrada" Type="datetime" Nullable="false" />
+          <Property Name="fecha_salida" Type="datetime" />
           <Property Name="num_usuarios" Type="int" />
           <Property Name="estado" Type="int" Nullable="false" />
           <Property Name="costo" Type="numeric" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
-            <PropertyRef Name="id_usu" />
+            <PropertyRef Name="usuario_id" />
           </Key>
-          <Property Name="id_usu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="124" />
           <Property Name="cedula" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="telefono" Type="nvarchar" MaxLength="12" Nullable="false" />
           <Property Name="correo" Type="nvarchar" MaxLength="32" Nullable="false" />
           <Property Name="constrasenia" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="tipo" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Categoria">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
           <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
-              <PropertyRef Name="id_cat" />
+              <PropertyRef Name="categoria_id" />
             </Principal>
             <Dependent Role="Habitacion">
-              <PropertyRef Name="id_cat" />
+              <PropertyRef Name="categoria_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -66,10 +67,10 @@
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Habitacion">
-              <PropertyRef Name="id_hab" />
+              <PropertyRef Name="habitacion_id" />
             </Principal>
             <Dependent Role="Reservacion">
-              <PropertyRef Name="id_hab" />
+              <PropertyRef Name="habitacion_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -78,10 +79,10 @@
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
-              <PropertyRef Name="id_usu" />
+              <PropertyRef Name="usuario_id" />
             </Principal>
             <Dependent Role="Reservacion">
-              <PropertyRef Name="id_usu" />
+              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -110,36 +111,36 @@
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Categoria">
           <Key>
-            <PropertyRef Name="id_cat" />
+            <PropertyRef Name="categoria_id" />
           </Key>
-          <Property Name="id_cat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="precio_ini" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="precio_usu" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_inicial" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="precio_usuario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="max_usuarios" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Habitacion" Relationship="Self.FK_Categoria" FromRole="Categoria" ToRole="Habitacion" />
         </EntityType>
         <EntityType Name="Habitacion">
           <Key>
-            <PropertyRef Name="id_hab" />
+            <PropertyRef Name="habitacion_id" />
           </Key>
-          <Property Name="id_hab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="habitacion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria_id" Type="Int32" Nullable="false" />
           <Property Name="planta" Type="Int32" Nullable="false" />
           <Property Name="numeracion" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="id_cat" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Categoria" Relationship="Self.FK_Categoria" FromRole="Habitacion" ToRole="Categoria" />
           <NavigationProperty Name="Reservacion" Relationship="Self.FK_Habitacion" FromRole="Habitacion" ToRole="Reservacion" />
         </EntityType>
         <EntityType Name="Reservacion">
           <Key>
-            <PropertyRef Name="id_res" />
+            <PropertyRef Name="reservacion_id" />
           </Key>
-          <Property Name="id_res" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_usu" Type="Int32" Nullable="false" />
-          <Property Name="id_hab" Type="Int32" Nullable="false" />
-          <Property Name="fecha_ent" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="fecha_sal" Type="DateTime" Precision="3" />
+          <Property Name="reservacion_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" />
+          <Property Name="habitacion_id" Type="Int32" Nullable="false" />
+          <Property Name="fecha_entrada" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fecha_salida" Type="DateTime" Precision="3" />
           <Property Name="num_usuarios" Type="Int32" />
           <Property Name="estado" Type="Int32" Nullable="false" />
           <Property Name="costo" Type="Decimal" Precision="18" Scale="2" />
@@ -148,14 +149,15 @@
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
-            <PropertyRef Name="id_usu" />
+            <PropertyRef Name="usuario_id" />
           </Key>
-          <Property Name="id_usu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="124" FixedLength="false" Unicode="true" />
           <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="correo" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="constrasenia" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Reservacion" Relationship="Self.FK_Usuario" FromRole="Usuario" ToRole="Reservacion" />
         </EntityType>
         <Association Name="FK_Categoria">
@@ -163,10 +165,10 @@
           <End Role="Habitacion" Type="Self.Habitacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
-              <PropertyRef Name="id_cat" />
+              <PropertyRef Name="categoria_id" />
             </Principal>
             <Dependent Role="Habitacion">
-              <PropertyRef Name="id_cat" />
+              <PropertyRef Name="categoria_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -175,10 +177,10 @@
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Habitacion">
-              <PropertyRef Name="id_hab" />
+              <PropertyRef Name="habitacion_id" />
             </Principal>
             <Dependent Role="Reservacion">
-              <PropertyRef Name="id_hab" />
+              <PropertyRef Name="habitacion_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -187,14 +189,14 @@
           <End Role="Reservacion" Type="Self.Reservacion" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
-              <PropertyRef Name="id_usu" />
+              <PropertyRef Name="usuario_id" />
             </Principal>
             <Dependent Role="Reservacion">
-              <PropertyRef Name="id_usu" />
+              <PropertyRef Name="usuario_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Habitacion" EntityType="Self.Habitacion" />
           <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
@@ -217,14 +219,14 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities1">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="Categoria">
             <EntityTypeMapping TypeName="Model.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="precio_ini" ColumnName="precio_ini" />
-                <ScalarProperty Name="precio_usu" ColumnName="precio_usu" />
+                <ScalarProperty Name="precio_inicial" ColumnName="precio_inicial" />
+                <ScalarProperty Name="precio_usuario" ColumnName="precio_usuario" />
                 <ScalarProperty Name="max_usuarios" ColumnName="max_usuarios" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -232,10 +234,10 @@
           <EntitySetMapping Name="Habitacion">
             <EntityTypeMapping TypeName="Model.Habitacion">
               <MappingFragment StoreEntitySet="Habitacion">
-                <ScalarProperty Name="id_hab" ColumnName="id_hab" />
+                <ScalarProperty Name="habitacion_id" ColumnName="habitacion_id" />
+                <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
                 <ScalarProperty Name="planta" ColumnName="planta" />
                 <ScalarProperty Name="numeracion" ColumnName="numeracion" />
-                <ScalarProperty Name="id_cat" ColumnName="id_cat" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -243,11 +245,11 @@
           <EntitySetMapping Name="Reservacion">
             <EntityTypeMapping TypeName="Model.Reservacion">
               <MappingFragment StoreEntitySet="Reservacion">
-                <ScalarProperty Name="id_res" ColumnName="id_res" />
-                <ScalarProperty Name="id_usu" ColumnName="id_usu" />
-                <ScalarProperty Name="id_hab" ColumnName="id_hab" />
-                <ScalarProperty Name="fecha_ent" ColumnName="fecha_ent" />
-                <ScalarProperty Name="fecha_sal" ColumnName="fecha_sal" />
+                <ScalarProperty Name="reservacion_id" ColumnName="reservacion_id" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+                <ScalarProperty Name="habitacion_id" ColumnName="habitacion_id" />
+                <ScalarProperty Name="fecha_entrada" ColumnName="fecha_entrada" />
+                <ScalarProperty Name="fecha_salida" ColumnName="fecha_salida" />
                 <ScalarProperty Name="num_usuarios" ColumnName="num_usuarios" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="costo" ColumnName="costo" />
@@ -257,12 +259,13 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="Model.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="id_usu" ColumnName="id_usu" />
+                <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="correo" ColumnName="correo" />
                 <ScalarProperty Name="constrasenia" ColumnName="constrasenia" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

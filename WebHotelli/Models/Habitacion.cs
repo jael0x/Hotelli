@@ -20,10 +20,10 @@ namespace WebHotelli.Models
             this.Reservacion = new HashSet<Reservacion>();
         }
     
-        public int id_hab { get; set; }
+        public int habitacion_id { get; set; }
+        public int categoria_id { get; set; }
         public int planta { get; set; }
         public string numeracion { get; set; }
-        public int id_cat { get; set; }
         public int estado { get; set; }
     
         public virtual Categoria Categoria { get; set; }

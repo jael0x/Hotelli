@@ -12,7 +12,7 @@ namespace WebHotelli.Controllers
 {
     public class CategoriaController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities db = new Entities();
 
         // GET: Categoria
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_cat,nombre,precio_ini,precio_usu,max_usuarios")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "categoria_id,nombre,precio_inicial,precio_usuario,max_usuarios")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_cat,nombre,precio_ini,precio_usu,max_usuarios")] Categoria categoria)
+        public ActionResult Edit([Bind(Include = "categoria_id,nombre,precio_inicial,precio_usuario,max_usuarios")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {

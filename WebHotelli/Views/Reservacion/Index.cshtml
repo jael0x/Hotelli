@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_ent)
+            @Html.DisplayNameFor(model => model.fecha_entrada)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fecha_sal)
+            @Html.DisplayNameFor(model => model.fecha_salida)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.num_usuarios)
@@ -38,10 +38,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.fecha_ent)
+            @Html.DisplayFor(modelItem => item.fecha_entrada)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.fecha_sal)
+            @Html.DisplayFor(modelItem => item.fecha_salida)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.num_usuarios)
@@ -59,9 +59,9 @@
             @Html.DisplayFor(modelItem => item.Usuario.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_res }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_res }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_res })
+            @Html.ActionLink("Edit", "Edit", new { id=item.reservacion_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.reservacion_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.reservacion_id })
         </td>
     </tr>
 }

@@ -26,6 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.constrasenia)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipo)
+        </th>
         <th></th>
     </tr>
 
@@ -47,9 +50,12 @@
             @Html.DisplayFor(modelItem => item.constrasenia)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_usu }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_usu }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_usu })
+            @Html.DisplayFor(modelItem => item.tipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.usuario_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.usuario_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.usuario_id })
         </td>
     </tr>
 }

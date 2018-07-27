@@ -4,10 +4,10 @@
     <EntitySetMapping Name="Categoria">
       <EntityTypeMapping TypeName="Model.Categoria">
         <MappingFragment StoreEntitySet="Categoria">
-          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
+          <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="precio_ini" ColumnName="precio_ini" />
-          <ScalarProperty Name="precio_usu" ColumnName="precio_usu" />
+          <ScalarProperty Name="precio_inicial" ColumnName="precio_inicial" />
+          <ScalarProperty Name="precio_usuario" ColumnName="precio_usuario" />
           <ScalarProperty Name="max_usuarios" ColumnName="max_usuarios" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -15,10 +15,10 @@
     <EntitySetMapping Name="Habitacion">
       <EntityTypeMapping TypeName="Model.Habitacion">
         <MappingFragment StoreEntitySet="Habitacion">
-          <ScalarProperty Name="id_hab" ColumnName="id_hab" />
+          <ScalarProperty Name="habitacion_id" ColumnName="habitacion_id" />
+          <ScalarProperty Name="categoria_id" ColumnName="categoria_id" />
           <ScalarProperty Name="planta" ColumnName="planta" />
           <ScalarProperty Name="numeracion" ColumnName="numeracion" />
-          <ScalarProperty Name="id_cat" ColumnName="id_cat" />
           <ScalarProperty Name="estado" ColumnName="estado" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -26,11 +26,11 @@
     <EntitySetMapping Name="Reservacion">
       <EntityTypeMapping TypeName="Model.Reservacion">
         <MappingFragment StoreEntitySet="Reservacion">
-          <ScalarProperty Name="id_res" ColumnName="id_res" />
-          <ScalarProperty Name="id_usu" ColumnName="id_usu" />
-          <ScalarProperty Name="id_hab" ColumnName="id_hab" />
-          <ScalarProperty Name="fecha_ent" ColumnName="fecha_ent" />
-          <ScalarProperty Name="fecha_sal" ColumnName="fecha_sal" />
+          <ScalarProperty Name="reservacion_id" ColumnName="reservacion_id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="habitacion_id" ColumnName="habitacion_id" />
+          <ScalarProperty Name="fecha_entrada" ColumnName="fecha_entrada" />
+          <ScalarProperty Name="fecha_salida" ColumnName="fecha_salida" />
           <ScalarProperty Name="num_usuarios" ColumnName="num_usuarios" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="costo" ColumnName="costo" />
@@ -40,12 +40,13 @@
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="Model.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
-          <ScalarProperty Name="id_usu" ColumnName="id_usu" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="telefono" ColumnName="telefono" />
           <ScalarProperty Name="correo" ColumnName="correo" />
           <ScalarProperty Name="constrasenia" ColumnName="constrasenia" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -1,69 +1,62 @@
-﻿CREATE TABLE [Categoria]
-(
-[id_cat] INT IDENTITY (1,1) NOT NULL,
+﻿CREATE TABLE [Categoria](
+[categoria_id] INT IDENTITY (1,1) NOT NULL,
 [nombre] NVARCHAR(32) NOT NULL,
-[precio_ini] NUMERIC(18,2) NOT NULL,
-[precio_usu] NUMERIC(18,2) NOT NULL,
-[max_usuarios] INT NOT NULL
-);
+[precio_inicial] NUMERIC(18,2) NOT NULL,
+[precio_usuario] NUMERIC(18,2) NOT NULL,
+[max_usuarios] INT NOT NULL);
 GO
-ALTER TABLE [Categoria] ADD CONSTRAINT [PK_Categoria] PRIMARY KEY ([id_cat]);
+ALTER TABLE [Categoria] ADD CONSTRAINT [PK_Categoria] PRIMARY KEY ([categoria_id]);
 GO
 
-CREATE TABLE [Habitacion]
-(
-[id_hab] INT IDENTITY(1,1) NOT NULL,
+CREATE TABLE [Habitacion](
+[habitacion_id] INT IDENTITY(1,1) NOT NULL,
+[categoria_id] INT NOT NULL,
 [planta] INT NOT NULL,
 [numeracion] NVARCHAR(4) NOT NULL,
-[id_cat] INT NOT NULL,
-[estado] INT NOT NULL
-);
+[estado] INT NOT NULL);
 GO
-ALTER TABLE [Habitacion] ADD CONSTRAINT [PK_Habitacion] PRIMARY KEY ([id_hab]);
+ALTER TABLE [Habitacion] ADD CONSTRAINT [PK_Habitacion] PRIMARY KEY ([habitacion_id]);
 GO
 
-CREATE TABLE [Usuario]
-(
-[id_usu] INT IDENTITY(1,1) NOT NULL,
+CREATE TABLE [Usuario](
+[usuario_id] INT IDENTITY(1,1) NOT NULL,
 [nombre] NVARCHAR(124),
 [cedula] NVARCHAR(10) NOT NULL,
 [telefono] NVARCHAR(12) NOT NULL,
 [correo] NVARCHAR(32) NOT NULL,
-[constrasenia] NVARCHAR(8) NOT NULL
-);
+[constrasenia] NVARCHAR(8) NOT NULL,
+[tipo] INT NOT NULL);
 GO
-ALTER TABLE [Usuario] ADD CONSTRAINT [PK_Usuario] PRIMARY KEY ([id_usu]);
+ALTER TABLE [Usuario] ADD CONSTRAINT [PK_Usuario] PRIMARY KEY ([usuario_id]);
 GO
 
-CREATE TABLE [Reservacion]
-(
-[id_res] INT IDENTITY(1,1) NOT NULL,
-[id_usu] INT NOT NULL,
-[id_hab] INT NOT NULL,
-[fecha_ent] DATETIME NOT NULL,
-[fecha_sal] DATETIME,
+CREATE TABLE [Reservacion](
+[reservacion_id] INT IDENTITY(1,1) NOT NULL,
+[usuario_id] INT NOT NULL,
+[habitacion_id] INT NOT NULL,
+[fecha_entrada] DATETIME NOT NULL,
+[fecha_salida] DATETIME,
 [num_usuarios] INT,
 [estado] INT NOT NULL,
-[costo] NUMERIC(18,2)
-);
+[costo] NUMERIC(18,2));
 GO
-ALTER TABLE [Reservacion] ADD CONSTRAINT [PK_Reservacion] PRIMARY KEY ([id_res]);
+ALTER TABLE [Reservacion] ADD CONSTRAINT [PK_Reservacion] PRIMARY KEY ([reservacion_id]);
 GO
 
 ALTER TABLE [Habitacion]
 ADD CONSTRAINT [FK_Categoria]
-FOREIGN KEY ([id_cat])
-REFERENCES [Categoria]([id_cat]);
+FOREIGN KEY ([categoria_id])
+REFERENCES [Categoria]([categoria_id]);
 GO
 
 ALTER TABLE [Reservacion]
 ADD CONSTRAINT [FK_Usuario]
-FOREIGN KEY ([id_usu])
-REFERENCES [Usuario]([id_usu]);
+FOREIGN KEY ([usuario_id])
+REFERENCES [Usuario]([usuario_id]);
 GO
 
 ALTER TABLE [Reservacion]
 ADD CONSTRAINT [FK_Habitacion]
-FOREIGN KEY ([id_hab])
-REFERENCES [Habitacion]([id_hab]);
+FOREIGN KEY ([habitacion_id])
+REFERENCES [Habitacion]([habitacion_id]);
 GO

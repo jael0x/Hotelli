@@ -14,11 +14,11 @@ namespace WebHotelli.Models
     
     public partial class Reservacion
     {
-        public int id_res { get; set; }
-        public int id_usu { get; set; }
-        public int id_hab { get; set; }
-        public System.DateTime fecha_ent { get; set; }
-        public Nullable<System.DateTime> fecha_sal { get; set; }
+        public int reservacion_id { get; set; }
+        public int usuario_id { get; set; }
+        public int habitacion_id { get; set; }
+        public System.DateTime fecha_entrada { get; set; }
+        public Nullable<System.DateTime> fecha_salida { get; set; }
         public Nullable<int> num_usuarios { get; set; }
         public int estado { get; set; }
         public Nullable<decimal> costo { get; set; }

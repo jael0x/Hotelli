@@ -12,7 +12,7 @@ namespace WebHotelli.Controllers
 {
     public class HabitacionController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities db = new Entities();
 
         // GET: Habitacion
         public ActionResult Index()
@@ -39,7 +39,7 @@ namespace WebHotelli.Controllers
         // GET: Habitacion/Create
         public ActionResult Create()
         {
-            ViewBag.id_cat = new SelectList(db.Categoria, "id_cat", "nombre");
+            ViewBag.categoria_id = new SelectList(db.Categoria, "categoria_id", "nombre");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_hab,planta,numeracion,id_cat,estado")] Habitacion habitacion)
+        public ActionResult Create([Bind(Include = "habitacion_id,categoria_id,planta,numeracion,estado")] Habitacion habitacion)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace WebHotelli.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id_cat = new SelectList(db.Categoria, "id_cat", "nombre", habitacion.id_cat);
+            ViewBag.categoria_id = new SelectList(db.Categoria, "categoria_id", "nombre", habitacion.categoria_id);
             return View(habitacion);
         }
 
@@ -73,7 +73,7 @@ namespace WebHotelli.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.id_cat = new SelectList(db.Categoria, "id_cat", "nombre", habitacion.id_cat);
+            ViewBag.categoria_id = new SelectList(db.Categoria, "categoria_id", "nombre", habitacion.categoria_id);
             return View(habitacion);
         }
 
@@ -82,7 +82,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_hab,planta,numeracion,id_cat,estado")] Habitacion habitacion)
+        public ActionResult Edit([Bind(Include = "habitacion_id,categoria_id,planta,numeracion,estado")] Habitacion habitacion)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace WebHotelli.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_cat = new SelectList(db.Categoria, "id_cat", "nombre", habitacion.id_cat);
+            ViewBag.categoria_id = new SelectList(db.Categoria, "categoria_id", "nombre", habitacion.categoria_id);
             return View(habitacion);
         }
 

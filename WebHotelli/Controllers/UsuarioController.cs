@@ -12,7 +12,7 @@ namespace WebHotelli.Controllers
 {
     public class UsuarioController : Controller
     {
-        private Entities1 db = new Entities1();
+        private Entities db = new Entities();
 
         // GET: Usuario
         public ActionResult Index()
@@ -46,7 +46,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_usu,nombre,cedula,telefono,correo,constrasenia")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "usuario_id,nombre,cedula,telefono,correo,constrasenia,tipo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace WebHotelli.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_usu,nombre,cedula,telefono,correo,constrasenia")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "usuario_id,nombre,cedula,telefono,correo,constrasenia,tipo")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {

@@ -50,9 +50,17 @@
             @Html.DisplayFor(model => model.constrasenia)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id_usu }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.usuario_id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

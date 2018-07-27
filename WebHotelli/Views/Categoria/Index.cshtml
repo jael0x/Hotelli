@@ -15,10 +15,10 @@
             @Html.DisplayNameFor(model => model.nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.precio_ini)
+            @Html.DisplayNameFor(model => model.precio_inicial)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.precio_usu)
+            @Html.DisplayNameFor(model => model.precio_usuario)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.max_usuarios)
@@ -32,18 +32,18 @@
             @Html.DisplayFor(modelItem => item.nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.precio_ini)
+            @Html.DisplayFor(modelItem => item.precio_inicial)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.precio_usu)
+            @Html.DisplayFor(modelItem => item.precio_usuario)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.max_usuarios)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_cat }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_cat }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_cat })
+            @Html.ActionLink("Edit", "Edit", new { id=item.categoria_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.categoria_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.categoria_id })
         </td>
     </tr>
 }
