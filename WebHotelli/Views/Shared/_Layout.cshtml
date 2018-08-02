@@ -1,44 +1,98 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <title>Hotelli</title>
     @Scripts.Render("~/bundles/modernizr")
+    <!-- Favicons -->
+    <link href="~/Content/Template/img/favicon.png" rel="icon">
+    <link href="~/Content/Template/img/favicon.png" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="~/Content/Template/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/Content/Template/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/Template/lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/Content/Template/css/style.css" rel="stylesheet">
+
+    <!-- =======================================================
+      Theme Name: Regna
+      Theme URL: https://bootstrapmade.com/regna-bootstrap-onepage-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+
+    <!--==========================
+    Header
+    ============================-->
+    <header id="header" class="header-fixed">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Hotelli", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <div id="logo" class="pull-left">
+                <a href="/"><img src="~/Content/Template/img/logo.png" alt="" title="" /></a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+
+            <nav id="nav-menu-container">
+                <ul class="nav-menu">
+                    <li class="menu-active">@Html.ActionLink("Hotelli", "Index", "Home")</li>
                     <li>@Html.ActionLink("Reservacion", "Index", "Reservacion")</li>
-                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
                     <li>@Html.ActionLink("Habitacion", "Index", "Habitacion")</li>
                     <li>@Html.ActionLink("Categoria", "Index", "Categoria")</li>
+                    <li>@Html.ActionLink("Usuario", "Index", "Usuario")</li>
                 </ul>
+            </nav><!-- #nav-menu-container -->
+        </div>
+    </header><!-- #header -->
+
+    <div style="height: 72px"></div>
+
+    @RenderBody()
+
+    <!--==========================
+      Footer
+    ============================-->
+    <footer id="footer">
+        <div class="container">
+            <div class="copyright">
+                &copy; 2018 - Hotelli
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+    </footer><!-- #footer -->
 
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <!--<script src="~/Content/Template/lib/jquery/jquery.min.js"></script>
+    <script src="~/Content/Template/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Content/Template/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/Template/lib/easing/easing.min.js"></script>
+    <script src="~/Content/Template/lib/wow/wow.min.js"></script>
+
+    <script src="~/Content/Template/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/Content/Template/lib/counterup/counterup.min.js"></script>
+    <script src="~/Content/Template/lib/superfish/hoverIntent.js"></script>
+    <script src="~/Content/Template/lib/superfish/superfish.min.js"></script>-->
+    <!-- Contact Form JavaScript File -->
+    <!--<script src="~/Content/Template/contactform/contactform.js"></script>-->
+    <!-- Template Main Javascript File -->
+    <!--<script src="~/Content/Template/js/main.js"></script>-->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

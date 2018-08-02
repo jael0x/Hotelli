@@ -263,9 +263,6 @@ C:\Users\JAEL ARMAS\Documents\Visual Studio Projects\WebHotelli\WebHotelli\obj\D
 C:\Users\JAEL ARMAS\Documents\Visual Studio Projects\WebHotelli\WebHotelli\obj\Debug\WebHotelli.dll
 C:\Users\JAEL ARMAS\Documents\Visual Studio Projects\WebHotelli\WebHotelli\obj\Debug\WebHotelli.pdb
 C:\Users\JAEL ARMAS\Documents\Visual Studio Projects\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csprojResolveAssemblyReference.cache
-C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csproj.CoreCompileInputs.cache
-C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.dll
-C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.pdb
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\ApplicationInsights.config
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\WebHotelli.dll.config
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\WebHotelli.dll
@@ -526,5 +523,8 @@ C:\Workplace\Web\WebHotelli\WebHotelli\bin\es\System.Web.Razor.resources.dll
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\es\System.Web.WebPages.resources.dll
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Workplace\Web\WebHotelli\WebHotelli\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csproj.CopyComplete
 C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csprojResolveAssemblyReference.cache
+C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csproj.CoreCompileInputs.cache
+C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.csproj.CopyComplete
+C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.dll
+C:\Workplace\Web\WebHotelli\WebHotelli\obj\Debug\WebHotelli.pdb
